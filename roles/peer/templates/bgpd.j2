@@ -1,0 +1,26 @@
+
+router bgp {{ item.asn | default(item.id) }}
+   neighbor 10.0.{{ vlans[item.vlan]['id'] }}.253 remote-as 65000
+   neighbor 10.0.{{ vlans[item.vlan]['id'] }}.253 route-map EXPORT out
+
+{% for network in item.networks | default([]) %}
+   network {{ network }}
+{% endfor %}
+!
+!
+{% for network in item.networks | default([]) %}
+{% set k = loop.index %}
+ip prefix-list prefix_{{ k }} seq 5 permit {{ network }}
+
+{% set aspath = []  %}
+{% for i in range(k) %}
+{{ aspath.append( item.asn ) }}
+{% endfor %}
+
+route-map EXPORT permit {{ k }}
+{% if aspath %}
+ match ip address prefix-list prefix_{{ k }}
+ set as-path prepend {{ aspath|join(' ') }}
+{% endif %}
+!
+{% endfor %}

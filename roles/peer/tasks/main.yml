@@ -1,0 +1,55 @@
+---
+
+- name: generating peer zebra configs
+  template:
+      src: zebra.j2
+      dest: "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_zebra.conf"
+  with_items: "{{ peers }}"
+
+- name: generating peer bgpd configs
+  template:
+      src: bgpd.j2
+      dest: "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_bgpd.conf"
+  with_items: "{{ peers }}"
+
+- name: creating docker networks for peers
+  docker_network:
+      name: "sdiro_net{{ vlans[item['vlan']]['id'] }}"
+      driver: macvlan
+      appends: yes
+      state: present
+      ipam_options:
+          subnet: "10.0.{{ vlans[item['vlan']]['id'] }}.0/24"
+          gateway: "10.0.{{ vlans[item['vlan']]['id'] }}.254"
+      driver_options:
+          macvlan_mode: "bridge"
+          parent: "{{ phys_intf }}.{{ vlans[item['vlan']]['id'] }}"
+  with_items: "{{ peers }}"
+
+- name: update quagga image
+  docker_image:
+      name: trungdtbk/quagga:iperf3
+      repository: trungdtbk/quagga:iperf3
+      pull: yes
+      force: yes
+      state: present
+  register: image_build
+
+- name: creating docker containers for peers
+  docker_container:
+      name: "peer_{{ item['asn'] }}_{{ item['id'] }}"
+      image: "{{ peer_image }}"
+      hostname: "peer_{{ item['asn'] }}_{{ item['id'] }}"
+      privileged: true
+      recreate: "{{ True if image_build.changed else omit }}"
+      capabilities:
+          - net_admin
+      networks:
+          - name: "sdiro_net{{ vlans[item['vlan']]['id'] }}"
+            ipv4_address: "{{ item['ip'] | default('10.0.%s.%s' | format(vlans[item['vlan']]['id'],  item['id'])) }}"
+      volumes:
+          - "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_zebra.conf:/etc/quagga/zebra.conf"
+          - "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_bgpd.conf:/etc/quagga/bgpd.conf"
+  loop: "{{ peers }}"
+
+

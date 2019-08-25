@@ -1,0 +1,7 @@
+
+interface lo
+  ip address 127.0.0.1/8
+{% for network in item.networks | default([]) %}
+  ip address {{ network | regex_replace('^(?P<net>(\d+\.){3})(\d+)(?P<mask>\/\d+)', '\\g<net>1\\g<mask>') }}
+{% endfor %}
+

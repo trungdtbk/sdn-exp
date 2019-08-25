@@ -1,0 +1,70 @@
+
+- name: copy config
+  copy:
+      dest: "{{ experiment_home }}/configs/"
+      src: "{{ item }}"
+  loop:
+      - "./files/gauge.yaml"
+      - "./files/faucet-gauge.yaml"
+  register: gauge_config_change
+
+- name: create gauge container
+  docker_container:
+      name: "gauge"
+      image: "faucet/gauge"
+      hostname: "gauge"
+      recreate: yes
+      volumes:
+          - "{{ experiment_home }}/configs:/etc/faucet"
+          - "{{ experiment_home }}/logs/gauge:/var/log/faucet"
+      ports:
+          - "0.0.0.0:6763:6653"
+  when: gauge_config_change.changed
+
+- name: restart gauge
+  docker_container:
+      name: "gauge"
+      restart: yes
+      state: started
+
+- name: generate prometheus config
+  template:
+      src: prometheus.j2
+      dest: "{{ experiment_home }}/configs/prometheus.yml"
+  register: prom_config_change
+
+- name: copy prometheus rules
+  copy:
+      dest: "{{ experiment_home }}/configs"
+      src: "{{ item }}"
+  loop:
+      - "{{ role_path }}/files/faucet.rules.yml"
+
+- name: create prometheus container
+  docker_container:
+      name: "prometheus"
+      image: "prom/prometheus:v2.9.0"
+      recreate: yes
+      user: root
+      volumes:
+          - "{{ experiment_home }}/configs:/etc/prometheus"
+          - "{{ experiment_home }}/prometheus:/prometheus"
+      links:
+          - gauge
+  when: gauge_config_change.changed or prom_config_change.changed
+
+- name: create grafana
+  docker_container:
+      user: root
+      name: "grafana"
+      recreate: yes
+      image: "grafana/grafana:5.4.0"
+      links:
+          - prometheus
+      volumes:
+          - "{{ experiment_home }}/grafana:/var/lib/grafana"
+
+- name: restart grafana
+  docker_container:
+      name: "grafana"
+      state: started

@@ -1,0 +1,19 @@
+---
+
+- hosts: servers, !m114
+  roles:
+      - common
+
+- hosts: m167
+  roles:
+      - peer
+
+- hosts: m169
+  roles:
+      - router
+      - reflector
+
+- hosts: m17c
+  roles:
+      - router
+      - peer

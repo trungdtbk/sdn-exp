@@ -1,0 +1,25 @@
+---
+
+routerid: {{ router_id }}
+
+peers:
+{% for vlan in interfaces %}
+{% if 'ip' in vlan %}
+{% set local_ip = vlan.ip %}
+{% else %}
+{% set local_ip = '10.0.%s.253' % vlans[vlan.vlan]['id'] %}
+{% endif %}
+{% for peer in vlan.peers | default([])  %}
+- peer_ip: 10.0.{{ vlans[vlan.vlan]['id'] }}.{{ peer.id }}
+  peer_as: {{ peer.asn }}
+  local_as: 65000
+  local_ip : {{ local_ip }}
+{% endfor %}
+{% endfor %}
+
+borders:
+{% for border in borders | default([]) %}
+- routerid: {{ border.rid }}
+  nexthop: {{ border.nexthop }}
+
+{% endfor %}

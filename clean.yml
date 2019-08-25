@@ -1,0 +1,19 @@
+---
+- hosts: m17c
+  tasks:
+      - name: stop all docker containers
+        shell: docker ps -a | awk '{ print $1 }' | while read line; do docker stop $line; done
+        ignore_errors: true
+
+      - name: remove all docker containers
+        shell: docker ps -a | awk '{ print $1 }' | while read line; do docker rm $line; done
+        ignore_errors: true
+
+      - name: remove all docker networks
+        shell: docker network ls | awk '{ if ($2 != "none" && $2 != "bridge" && $2 != "host" && $2 != "ID") {print $2 }; }' | while read line; do docker network rm $line; done
+
+      - name: remove experiment folder
+        become: yes
+        file:
+            state: absent
+            path: "{{ experiment_home }}"

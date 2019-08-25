@@ -1,0 +1,23 @@
+
+- name: generate reflector config
+  template:
+      src: "{{ item }}"
+      dest: "{{ experiment_home }}/configs/reflector_{{ item }}.conf"
+  with_items:
+      - zebra.j2
+      - bgpd.j2
+
+- name: create reflector container
+  docker_container:
+      name: reflector
+      image: trungdtbk/quagga
+      hostname: reflector
+      privileged: true
+      capabilities:
+          - net_admin
+      networks:
+          - name: "sdiro_net{{ vlans[reflector['vlan']]['id'] }}"
+            ipv4_address: "10.0.{{ vlans[reflector['vlan']]['id'] }}.{{ reflector['id'] }}"
+      volumes:
+          - "{{ experiment_home }}/configs/reflector_bgpd.j2.conf:/etc/quagga/bgpd.conf"
+          - "{{ experiment_home }}/configs/reflector_zebra.j2.conf:/etc/quagga/zebra.conf"

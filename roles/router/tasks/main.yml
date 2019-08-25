@@ -1,0 +1,69 @@
+---
+
+- name: create docker networks 
+  docker_network:
+      name: "sdiro_net{{ vlans[item['vlan']]['id'] }}"
+      driver: macvlan
+      appends: yes
+      state: present
+      ipam_options:
+          subnet: "10.0.{{ vlans[item['vlan']]['id'] }}.0/24"
+          gateway: "10.0.{{ vlans[item['vlan']]['id'] }}.254"
+      driver_options:
+          macvlan_mode: "bridge"
+          parent: "{{ phys_intf }}.{{ vlans[item['vlan']]['id'] }}"
+  with_items: "{{ interfaces }}"
+
+
+- name: download fbgp source
+  git:
+      repo: 'https://github.com/trungdtbk/fbgp2'
+      dest: "{{ experiment_home }}/src/fbgp"
+  register: git_result
+
+
+- name: build fbgp image
+  docker_image:
+      name: "trungdtbk/fbgp"
+      path: "{{ experiment_home }}/src/fbgp"
+      dockerfile: Dockerfile
+      state: present
+      force: '{{ True if git_result.changed else omit }}'
+  register: image_build
+
+- name: generate faucet config
+  template:
+      src: faucet.j2
+      dest: "{{ experiment_home }}/configs/faucet.yaml"
+  register: faucet_config
+
+- name: generate fbgp config
+  template:
+      src: fbgp.j2
+      dest: "{{ experiment_home }}/configs/fbgp.yaml"
+  register: fbgp_config
+
+- name: create router container
+  docker_container:
+      name: "fbgp_router"
+      image: "trungdtbk/fbgp"
+      hostname: "fbgp_{{ router_name }}"
+      privileged: yes
+      recreate: '{{ True if (image_build.changed or faucet_config.changed or fbgp_config.changed) else omit }}'
+      ports:
+          - "6653:6653"
+          - "9302:9302"
+      volumes:
+          - "{{ experiment_home }}/logs/fbgp:/var/log/fbgp"
+          - "{{ experiment_home }}/configs:/etc/fbgp"
+      networks: "{{ interfaces | format_interfaces(vlans) }}"
+      env:
+          FBGP_CONFIG: "/etc/fbgp/fbgp.yaml"
+          FBGP_LOG: "/var/log/fbgp/fbgp.log"
+          FBGP_LOG_LEVEL: "{{ log_level }}"
+          FBGP_SERVER_ADDR: "{{ grcp_addr }}"
+          FBGP_SERVER_PORT: "{{ grcp_port }}"
+          FAUCET_CONFIG: "/etc/fbgp/faucet.yaml"
+          FAUCET_LOG: "/var/log/fbgp/faucet.log"
+          FAUCET_EXCEPTION_LOG: "/var/log/fbgp/faucet_exception.log"
+          FAUCET_EVENT_SOCK: "/var/log/fbgp/faucet.sock"

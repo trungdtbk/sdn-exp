@@ -1,0 +1,11 @@
+
+- name: create dirs to store experiment results
+  file:
+      path: "{{ experiment_home }}/{{ item }}"
+      state: directory
+  with_items:
+      - data
+      - configs
+      - logs
+      - mrt_files
+
