@@ -53,8 +53,9 @@
       ports:
           - "6653:6653"
           - "9302:9302"
+      #command: "tail -f /dev/null"
       volumes:
-          - "{{ experiment_home }}/logs/fbgp:/var/log/fbgp"
+          - "{{ experiment_home }}/logs:/var/log/fbgp"
           - "{{ experiment_home }}/configs:/etc/fbgp"
       networks: "{{ interfaces | format_interfaces(vlans) }}"
       env:

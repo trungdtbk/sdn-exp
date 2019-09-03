@@ -3,6 +3,7 @@
   file:
       path: "{{ experiment_home }}/{{ item }}"
       state: directory
+      mode: '777'
   with_items:
       - data
       - configs

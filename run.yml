@@ -4,16 +4,165 @@
   roles:
       - common
 
-- hosts: m167
+- hosts: m17d
+  vars:
+      phys_intf: enp1s0f1
+      switch_dpid: "0x0000e01aea17c548" # ATX-930-1
+      router_id: 10.0.100.101
+      router_name: router1
+      interfaces:
+          - vlan: vlan10
+            switch_ports: [ 10, 11 ]
+            faucet_mac: "0e:00:00:00:00:10"
+            peers:
+                - id: 1
+                  asn: 1
+          - vlan: vlan20
+            switch_ports: [ 10, 11 ]
+            faucet_mac: "0e:00:00:00:00:20"
+            peers:
+                - id: 2
+                  asn: 2
+          - vlan: vlan100
+            ip: 10.0.100.101
+            faucet_vips: [ 10.0.100.201/24 ]
+            faucet_mac: "0e:00:00:00:01:01"
+            switch_ports: [5, 11]
+            peers:
+                - id: 250
+                  asn: 65000
+      borders:
+          - rid: 10.0.100.103
+            nexthop: 10.0.100.203
   roles:
-      - peer
+      - grcp
+      - router
+      - monitor
 
 - hosts: m169
+  vars:
+      phys_intf: enp2s0f0
+      router_id: 10.0.100.102
+      router_name: router2
+      switch_dpid: 0x0000e01aea17c523 # ATX-930-2
+      interfaces:
+          - vlan: vlan30
+            switch_ports: [10, 12]
+            faucet_mac: "0e:00:00:00:00:30"
+            peers:
+                - id: 1
+                  asn: 3
+                - id: 2
+                  asn: 4
+          - vlan: vlan100
+            ip: 10.0.100.102
+            faucet_vips: [ 10.0.100.202/24 ]
+            faucet_mac: "0e:00:00:00:01:02"
+            switch_ports: [5, 10]
+            peers:
+                - id: 250 # reflector
+                  asn: 65000
+      borders:
+          - rid: 10.0.100.103
+            nexthop: 10.0.100.203
+      reflector:
+          id: 250
+          vlan: vlan100
+          clients: [ 10.0.100.101, 10.0.100.102, 10.0.100.103 ]
   roles:
       - router
       - reflector
 
 - hosts: m17c
+  vars:
+      phys_intf: enp1s0f0
+      switch_dpid: 0x0000eccd6d9d4950 # ATX-510
+      router_id: 10.0.100.103
+      router_name: router3
+      interfaces:
+          - vlan: vlan100
+            switch_ports: [4, 5, 11]
+            ip: 10.0.100.103
+            faucet_vips: [ 10.0.100.203/24 ]
+            faucet_mac: "0e:00:00:00:01:03"
+            peers:
+                - id: 250 # reflector
+                  asn: 65000
+          - vlan: vlan200
+            switch_ports: [11]
+            faucet_mac: "0e:00:00:00:02:00"
+            peers:
+                - id: 1
+                  asn: 100
+                - id: 2
+                  asn: 200
+                - id: 3
+                  asn: 300
+          - vlan: vlan201
+            switch_ports: [11]
+            faucet_mac: "0e:00:00:00:02:01"
+            peers:
+                - id: 4
+                  asn: 400
+                - id: 5
+                  asn: 500
+      borders:
+          - rid: 10.0.100.101
+            nexthop: 10.0.100.201
+          - rid: 10.0.100.102
+            nexthop: 10.0.100.202
+      peers:
+          - id: 1 # customer1
+            asn: 100
+            vlan: vlan200
+          - id: 2 # customer2
+            asn: 200
+            vlan: vlan200
+          - id: 3 # customer3
+            asn: 300
+            vlan: vlan200
+          - id: 4 # customer4
+            asn: 400
+            vlan: vlan201
+          - id: 5 # customer5
+            asn: 500
+            vlan: vlan201
   roles:
       - router
       - peer
+
+- hosts: m162
+  vars:
+      phys_intf: enp1s0
+      peers:
+          - id: 1 # peer1
+            asn: 1
+            vlan: vlan10
+            networks: ["1.0.0.0/24", "2.0.0.0/24", "3.0.0.0/24", "4.0.0.0/24"]
+            #networks: ["1.0.0.0/24" ]
+          - id: 2 # peer2
+            asn: 2
+            vlan: vlan20
+            networks: ["2.0.0.0/24", "3.0.0.0/24", "4.0.0.0/24", "1.0.0.0/24"]
+            #networks: ["2.0.0.0/24"]
+  roles:
+      - peer
+
+- hosts: m167
+  vars:
+      phys_intf: enp2s0f0
+      peers:
+          - id: 1 # peer3
+            asn: 3
+            vlan: vlan30
+            networks: ["3.0.0.0/24", "4.0.0.0/24", "1.0.0.0/24", "2.0.0.0/24"]
+            #networks: ["3.0.0.0/24"]
+          - id: 2 # peer4
+            asn: 4
+            vlan: vlan30
+            networks: ["4.0.0.0/24", "1.0.0.0/24", "2.0.0.0/24", "3.0.0.0/24"]
+            #networks: ["4.0.0.0/24"]
+  roles:
+      - peer
+
+

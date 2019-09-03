@@ -1,0 +1,29 @@
+version: 2
+
+vlans:
+    vlan1000:
+        vid: 1000
+dps:
+    atx-930-1:
+        dp_id: 0x0000e01aea17c548
+        hardware: "Allied-Telesis"
+        description: "atx930-1"
+        interface_ranges:
+            1,5,10-11:
+                native_vlan: vlan1000
+
+    atx510:
+        dp_id: 0x0000eccd6d9d4950
+        hardware: "Allied-Telesis"
+        description: "atx510"
+        interface_ranges:
+            4,5,11:
+                native_vlan: vlan1000
+
+    atx930-2:
+        dp_id: 0x0000e01aea17c523
+        hardware: "Allied-Telesis"
+        description: "atx930-2"
+        interface_ranges:
+            1,5,10,12:
+                native_vlan: vlan1000

@@ -1,0 +1,45 @@
+
+- name: create neo4j container
+  docker_container:
+      name: "neo4j"
+      image: "neo4j:3.4"
+      env:
+          NEO4J_AUTH: none
+      ports:
+          - "7687:7687"
+          - "7474:7474"
+  register: neo4j_change
+
+- name: download grcp
+  git:
+      repo: https://github.com/trungdtbk/grcp
+      dest: "{{ experiment_home }}/src/grcp"
+  register: result
+
+- name: build grcp
+  docker_image:
+      path: "{{ experiment_home }}/src/grcp"
+      name: trungdtbk/grcp
+      force: "{{ True if result.changed else omit }}"
+
+- name: create grcp
+  docker_container:
+      name: grcp
+      hostname: grcp
+      #recreate: "{{ True if (result.changed or neo4j_change.changed) else omit }}"
+      image: trungdtbk/grcp
+      #command: "tail -f /dev/null"
+      volumes:
+          - "{{ experiment_home }}/configs:/etc/grcp"
+          - "{{ experiment_home }}/logs:/var/log/grcp"
+      env:
+          GRCP_DB_URI: "bolt://neo4j:7687"
+          GRCP_LOG: "/var/log/grcp/grcp.log"
+          GRCP_LOG_LEVEL: "{{ log_level }}"
+          GRCP_PROM_HOST: 172.17.0.1
+          #GRCP_PROM_INTERVAL: 120
+          #APP_LIST: "test_app.py test_app2.py"
+      ports:
+          - "9999:9999"
+      links:
+          - neo4j

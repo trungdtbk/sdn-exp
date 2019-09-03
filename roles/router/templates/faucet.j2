@@ -41,4 +41,7 @@ vlans:
 {% else %}
        faucet_vips: [ 10.0.{{ vlans[vlan.vlan]['id'] }}.254/24 ]
 {% endif %}
+{% if 'faucet_mac' in vlan %}
+       faucet_mac: {{ vlan.faucet_mac }}
+{% endif %}
 {% endfor %}

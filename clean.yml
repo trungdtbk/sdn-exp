@@ -1,5 +1,5 @@
 ---
-- hosts: m17c
+- hosts: servers, !m114 
   tasks:
       - name: stop all docker containers
         shell: docker ps -a | awk '{ print $1 }' | while read line; do docker stop $line; done
