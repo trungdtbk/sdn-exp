@@ -5,12 +5,14 @@
       src: zebra.j2
       dest: "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_zebra.conf"
   with_items: "{{ peers }}"
+  register: zebra_change
 
 - name: generating peer bgpd configs
   template:
       src: bgpd.j2
       dest: "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_bgpd.conf"
   with_items: "{{ peers }}"
+  register: bgpd_change
 
 - name: creating docker networks for peers
   docker_network:
@@ -28,8 +30,8 @@
 
 - name: update quagga image
   docker_image:
-      name: trungdtbk/quagga:iperf3
-      repository: trungdtbk/quagga:iperf3
+      name: "{{ peer_image }}"
+      repository: "{{ peer_image }}"
       pull: yes
       force: yes
       state: present
@@ -41,7 +43,8 @@
       image: "{{ peer_image }}"
       hostname: "peer_{{ item['asn'] }}_{{ item['id'] }}"
       privileged: true
-      recreate: "{{ True if image_build.changed else omit }}"
+      recreate: "{{ True if (image_build.changed or zebra_change.changed or bgpd_change.changed) else omit }}"
+      command: "{{ peer_command | default(omit) }}"
       capabilities:
           - net_admin
       networks:
@@ -50,6 +53,22 @@
       volumes:
           - "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_zebra.conf:/etc/quagga/zebra.conf"
           - "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_bgpd.conf:/etc/quagga/bgpd.conf"
+          - "{{ experiment_home }}/mrt_files:/mrt_files"
+          - "{{ experiment_home }}/logs:/var/log/quagga"
+      env:
+          BGPREPLAY_AGENT: yabgp
+          BGPREPLAY_PEERS: "10.0.{{ vlans[item.vlan]['id'] }}.253:9179/65000"
+          BGPREPLAY_NEXTHOP: "{{ item['ip'] | default('10.0.%s.%s' | format(vlans[item['vlan']]['id'], 1)) }}"
+          BGPREPLAY_LOCAL_IP: "{{ item['ip'] | default('10.0.%s.%s' | format(vlans[item['vlan']]['id'],  item['id'])) }}"
+          #BGPREPLAY_MRT: "/mrt_files/updates.20181001.0030.bz2"
   loop: "{{ peers }}"
+
+- name: install nat rule to peer container
+  shell: docker exec peer_{{ item['asn'] }}_{{ item['id'] }} iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+  loop: "{{ peers | selectattr('asn', 'lt', 100) | list }}"
+
+- name: install tc rule simulating wan
+  shell: docker exec peer_{{ item.asn }}_{{ item.id }} tc qdisc add dev eth1 root netem delay {{ item.asn }}
+  loop: "{{ peers | selectattr('asn', '<', 100) | list }}"
 
 
