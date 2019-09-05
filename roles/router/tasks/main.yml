@@ -19,6 +19,8 @@
   git:
       repo: 'https://github.com/trungdtbk/fbgp2'
       dest: "{{ experiment_home }}/src/fbgp"
+      #track_submodules: yes
+      #force: yes
   register: git_result
 
 
