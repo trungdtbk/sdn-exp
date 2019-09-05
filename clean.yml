@@ -1,16 +1,15 @@
 ---
-- hosts: servers, !m114 
+- hosts: servers, !m114
   tasks:
       - name: stop all docker containers
-        shell: docker ps -a | awk '{ print $1 }' | while read line; do docker stop $line; done
-        ignore_errors: true
+        shell: docker ps -a | awk '{ print $1 }' | while read line; do if [ -z "$line" ]; then break; else docker stop $line > /dev/null 2>&1; fi; done || echo 'done'
 
       - name: remove all docker containers
-        shell: docker ps -a | awk '{ print $1 }' | while read line; do docker rm $line; done
+        shell: docker ps -a | awk '{ print $1 }' | while read line; do if [ -z "$line" ]; then break; else docker rm $line > /dev/null 2>&1; fi; done || echo 'done'
         ignore_errors: true
 
       - name: remove all docker networks
-        shell: docker network ls | awk '{ if ($2 != "none" && $2 != "bridge" && $2 != "host" && $2 != "ID") {print $2 }; }' | while read line; do docker network rm $line; done
+        shell: docker network ls | awk '{ if ($2 != "none" && $2 != "bridge" && $2 != "host" && $2 != "ID") {print $2 }; }' | while read line; do if [ -z "$line" ]; then break; else docker network rm $line > /dev/null 2&>1; fi; done || echo 'done'
 
       - name: remove experiment folder
         become: yes
