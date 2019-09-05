@@ -14,18 +14,23 @@
           - vlan: vlan10
             switch_ports: [ 10, 11 ]
             faucet_mac: "0e:00:00:00:00:10"
+            #faucet_ext_vips: [ 10.0.10.252/24, 10.0.10.251/24, 10.0.10.250/24 ]
             peers:
                 - id: 1
                   asn: 1
+                - id: 2
+                  asn: 65000
           - vlan: vlan20
             switch_ports: [ 10, 11 ]
             faucet_mac: "0e:00:00:00:00:20"
+            #faucet_ext_vips: [ 10.0.20.252/24, 10.0.20.251/24, 10.0.20.250/24 ]
             peers:
                 - id: 2
                   asn: 2
           - vlan: vlan100
             ip: 10.0.100.101
             faucet_vips: [ 10.0.100.201/24 ]
+            faucet_ext_vips: [ 10.0.100.222/24 10.0.100.223/24 10.0.100.224/24 ]
             faucet_mac: "0e:00:00:00:01:01"
             switch_ports: [5, 11]
             peers:
@@ -34,10 +39,17 @@
       borders:
           - rid: 10.0.100.103
             nexthop: 10.0.100.203
+      peer_image: trungdtbk/bgpreplay
+      peer_command: tail -f /dev/null
+      peers:
+          - id: 2
+            asn: 65000
+            vlan: vlan10
   roles:
       - grcp
       - router
       - monitor
+      - peer
 
 - hosts: m169
   vars:
@@ -49,6 +61,7 @@
           - vlan: vlan30
             switch_ports: [10, 12]
             faucet_mac: "0e:00:00:00:00:30"
+            faucet_ext_vips: [ 10.0.30.252/24, 10.0.30.251/24, 10.0.30.250/24 ]
             peers:
                 - id: 1
                   asn: 3
