@@ -1,34 +1,6 @@
 ---
 
-- name: generating peer zebra configs
-  template:
-      src: zebra.j2
-      dest: "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_zebra.conf"
-  with_items: "{{ peers }}"
-  register: zebra_change
-
-- name: generating peer bgpd configs
-  template:
-      src: bgpd.j2
-      dest: "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_bgpd.conf"
-  with_items: "{{ peers }}"
-  register: bgpd_change
-
-- name: creating docker networks for peers
-  docker_network:
-      name: "sdiro_net{{ vlans[item['vlan']]['id'] }}"
-      driver: macvlan
-      appends: yes
-      state: present
-      ipam_options:
-          subnet: "10.0.{{ vlans[item['vlan']]['id'] }}.0/24"
-          gateway: "10.0.{{ vlans[item['vlan']]['id'] }}.254"
-      driver_options:
-          macvlan_mode: "bridge"
-          parent: "{{ phys_intf }}.{{ vlans[item['vlan']]['id'] }}"
-  with_items: "{{ peers }}"
-
-- name: update quagga image
+- name: "update docker image for {{ peer_image }}"
   docker_image:
       name: "{{ peer_image }}"
       repository: "{{ peer_image }}"
@@ -37,38 +9,83 @@
       state: present
   register: image_build
 
+- name: generating peer zebra configs
+  template:
+      src: zebra.j2
+      dest: "{{ experiment_home }}/configs/peer_{{ item }}_zebra.conf"
+  with_sequence: "start=1 end={{ peer_config.peer_count | default(1) }}"
+  register: zebra_change
+
+- name: generating peer bgpd configs
+  template:
+      src: bgpd.j2
+      dest: "{{ experiment_home }}/configs/peer_{{ item }}_bgpd.conf"
+  with_sequence: "start=1 end={{ peer_config.peer_count | default(1) }}"
+  register: bgpd_change
+
+- name: creating maclvan networks for peers
+  docker_network:
+      name: "sdiro_net{{ item.vlan }}"
+      driver: macvlan
+      appends: yes
+      state: present
+      ipam_options:
+          subnet: "10.0.{{ item.vlan }}.0/24"
+          gateway: "10.0.{{ item.vlan }}.254"
+      driver_options:
+          macvlan_mode: "bridge"
+          parent: "{{ item.phys_intf }}.{{ item.vlan }}"
+  with_items: "{{ peer_config.vlans }}"
+
 - name: creating docker containers for peers
   docker_container:
-      name: "peer_{{ item['asn'] }}_{{ item['id'] }}"
-      image: "{{ peer_image }}"
-      hostname: "peer_{{ item['asn'] }}_{{ item['id'] }}"
+      name: "peer_{{ item }}"
+      image: "{{ ((peer_config.peer_specific|default({}))[item|int]|default({})).image | default(peer_image) }}"
+      hostname: "peer_{{ item }}"
       privileged: true
       recreate: "{{ True if (image_build.changed or zebra_change.changed or bgpd_change.changed) else omit }}"
-      command: "{{ peer_command | default(omit) }}"
+      command: "{{ ((peer_config.peer_specific|default({}))[item|int]|default({})).command | default(omit) }}"
       capabilities:
           - net_admin
-      networks:
-          - name: "sdiro_net{{ vlans[item['vlan']]['id'] }}"
-            ipv4_address: "{{ item['ip'] | default('10.0.%s.%s' | format(vlans[item['vlan']]['id'],  item['id'])) }}"
+      networks: "{{ peer_config.vlans | make_networks_config(item) }}"
       volumes:
-          - "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_zebra.conf:/etc/quagga/zebra.conf"
-          - "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_bgpd.conf:/etc/quagga/bgpd.conf"
+          - "{{ experiment_home }}/configs/peer_{{ item }}_zebra.conf:/etc/quagga/zebra.conf"
+          - "{{ experiment_home }}/configs/peer_{{ item }}_bgpd.conf:/etc/quagga/bgpd.conf"
           - "{{ experiment_home }}/mrt_files:/mrt_files"
           - "{{ experiment_home }}/logs:/var/log/quagga"
       env:
-          BGPREPLAY_AGENT: yabgp
-          BGPREPLAY_PEERS: "10.0.{{ vlans[item.vlan]['id'] }}.253:9179/65000"
-          BGPREPLAY_NEXTHOP: "{{ item['ip'] | default('10.0.%s.%s' | format(vlans[item['vlan']]['id'], 1)) }}"
-          BGPREPLAY_LOCAL_IP: "{{ item['ip'] | default('10.0.%s.%s' | format(vlans[item['vlan']]['id'],  item['id'])) }}"
+          VTYSH_PAGER: "more"
+          #BGPREPLAY_AGENT: yabgp
+          #BGPREPLAY_PEERS: "10.0.{{ vlans[item.vlan]['id'] }}.253:9179/65000"
+          #BGPREPLAY_NEXTHOP: "{{ item['ip'] | default('10.0.%s.%s' | format(vlans[item['vlan']]['id'], 1)) }}"
+          #BGPREPLAY_LOCAL_IP: "{{ item['ip'] | default('10.0.%s.%s' | format(vlans[item['vlan']]['id'],  item['id'])) }}"
           #BGPREPLAY_MRT: "/mrt_files/updates.20181001.0030.bz2"
-  loop: "{{ peers }}"
+  with_sequence: "start=1 end={{ peer_config.peer_count | default(1) }}"
 
-- name: install nat rule to peer container
-  shell: docker exec peer_{{ item['asn'] }}_{{ item['id'] }} iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-  loop: "{{ peers | selectattr('asn', 'lt', 100) | list }}"
+#- name: install tc rule simulating wan
+#  shell: docker exec peer_{{ item.asn }}_{{ item.id }} tc qdisc add dev eth1 root netem delay {{ item.asn }}ms
+#  loop: "{{ peers | selectattr('asn', '<', 100) | list }}"
 
-- name: install tc rule simulating wan
-  shell: docker exec peer_{{ item.asn }}_{{ item.id }} tc qdisc add dev eth1 root netem delay {{ item.asn }}
-  loop: "{{ peers | selectattr('asn', '<', 100) | list }}"
+- name: create a bridge linking peer containers
+  docker_network:
+      name: sdiro_peer_internal
+      driver: bridge
+      ipam_options:
+          subnet: '1.0.0.0/24'
+          gateway: '1.0.0.253'
+      connected: "{{ range(1, peer_config.peer_count)|list|map('regex_replace', '(.*)','peer_\\1')|list }}"
+  when: peer_config.internet is defined and peer_config.internet == true
 
-
+- name: create a container simulating internet
+  docker_container:
+      name: sdiro_internet
+      image: "networkstatic/iperf3"
+      hostname: sdiro_internet
+      privileged: true
+      capabilities:
+          - net_admin
+      networks:
+          - name: sdiro_peer_internal
+            ipv4_address: 1.0.0.250
+      command: "iperf3 -s"
+  when: peer_config.internet is defined and peer_config.internet == true

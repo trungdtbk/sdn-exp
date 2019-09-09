@@ -2,17 +2,17 @@
 
 - name: create docker networks 
   docker_network:
-      name: "sdiro_net{{ vlans[item['vlan']]['id'] }}"
+      name: "sdiro_net{{ item.vlan }}"
       driver: macvlan
       appends: yes
       state: present
       ipam_options:
-          subnet: "10.0.{{ vlans[item['vlan']]['id'] }}.0/24"
-          gateway: "10.0.{{ vlans[item['vlan']]['id'] }}.254"
+          subnet: "10.0.{{ item.vlan }}.0/24"
+          gateway: "10.0.{{ item.vlan }}.254"
       driver_options:
           macvlan_mode: "bridge"
-          parent: "{{ phys_intf }}.{{ vlans[item['vlan']]['id'] }}"
-  with_items: "{{ interfaces }}"
+          parent: "{{ item.phys_intf }}.{{ item.vlan }}"
+  with_items: "{{ router_config.interfaces }}"
 
 
 - name: download fbgp source
@@ -49,21 +49,21 @@
   docker_container:
       name: "fbgp_router"
       image: "trungdtbk/fbgp"
-      hostname: "fbgp_{{ router_name }}"
+      hostname: "fbgp_{{ router_config.router_name }}"
       privileged: yes
       recreate: '{{ True if (image_build.changed or faucet_config.changed or fbgp_config.changed) else omit }}'
       ports:
           - "6653:6653"
           - "9302:9302"
-      #command: "tail -f /dev/null"
+      command: "{{ router_config.command | default(omit) }}"
       volumes:
           - "{{ experiment_home }}/logs:/var/log/fbgp"
           - "{{ experiment_home }}/configs:/etc/fbgp"
-      networks: "{{ interfaces | format_interfaces(vlans) }}"
+      networks: "{{ router_config.interfaces | make_networks_config(253) }}"
       env:
           FBGP_CONFIG: "/etc/fbgp/fbgp.yaml"
           FBGP_LOG: "/var/log/fbgp/fbgp.log"
-          FBGP_LOG_LEVEL: "{{ log_level }}"
+          FBGP_LOG_LEVEL: "{{ log_level | default('info') }}"
           FBGP_SERVER_ADDR: "{{ grcp_addr }}"
           FBGP_SERVER_PORT: "{{ grcp_port }}"
           FAUCET_CONFIG: "/etc/fbgp/faucet.yaml"

@@ -1,6 +1,6 @@
 
 router bgp 65000
-  bgp cluster-id 10.0.100.250
+  bgp cluster-id 10.0.100.{{ reflector.id }}
 {% for client in reflector['clients'] %}
   neighbor {{ client }} remote-as 65000
   neighbor {{ client }} route-reflector-client

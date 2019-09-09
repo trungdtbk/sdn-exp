@@ -15,9 +15,7 @@
       privileged: true
       capabilities:
           - net_admin
-      networks:
-          - name: "sdiro_net{{ vlans[reflector['vlan']]['id'] }}"
-            ipv4_address: "10.0.{{ vlans[reflector['vlan']]['id'] }}.{{ reflector['id'] }}"
+      networks: "{{ reflector.vlans | make_networks_config }}" 
       volumes:
           - "{{ experiment_home }}/configs/reflector_bgpd.j2.conf:/etc/quagga/bgpd.conf"
           - "{{ experiment_home }}/configs/reflector_zebra.j2.conf:/etc/quagga/zebra.conf"

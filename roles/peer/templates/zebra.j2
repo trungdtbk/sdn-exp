@@ -1,7 +1,11 @@
-
+{% set item = item | int %}
 interface lo
   ip address 127.0.0.1/8
-{% for network in item.networks | default([]) %}
-  ip address {{ network | regex_replace('^(?P<net>(\d+\.){3})(\d+)(?P<mask>\/\d+)', '\\g<net>1\\g<mask>') }}
+{% for vlan in peer_config.vlans %}
+  ip address 10.{{ vlan.vlan }}.{{ item }}.1/24
+{% endfor %}
+{% for network in peer_config.networks | default([]) %}
+! disable address assignment
+! ip address {{ network | regex_replace('^(?P<net>(\d+\.){3})(\d+)(?P<mask>\/\d+)', '\\g<net>1\\g<mask>') }}
 {% endfor %}
 

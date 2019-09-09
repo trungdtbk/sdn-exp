@@ -3,27 +3,26 @@ version: 2
 
 routers:
    router1:
-       vlans: {{ interfaces | map(attribute='vlan')|list|to_json }}
-
+       vlans: {{ router_config.interfaces|map(attribute='vlan')|map('regex_replace', '(.*)', 'vlan\\1')|list|to_json }}
 {% set port_vlans = {} %}
-{% for vlan in interfaces %}
+{% for vlan in router_config.interfaces %}
  {% for port in vlan.switch_ports %}
    {% if port in port_vlans %}
      {% if vlan.vlan not in port_vlans[port] %}
-       {{ port_vlans[port].append(vlan.vlan) }}
+       {{ port_vlans[port].append('vlan%s' % vlan.vlan) }}
      {% endif %}
    {% else %}
-     {% set vlan_list = [vlan.vlan] %}
+     {% set vlan_list = ['vlan%s' % vlan.vlan] %}
      {{ port_vlans.update({port : vlan_list }) }}
    {% endif %}
  {% endfor %}
 {% endfor %}
 
 dps:
-    switch_{{ router_name }}:
-        dp_id: {{ switch_dpid }}
+    switch_{{ router_config.router_name }}:
+        dp_id: {{ router_config.switch_dpid }}
         hardware: "Allied-Telesis"
-        description: "switch_{{ router_name }}"
+        description: "switch_{{ router_config.router_name }}"
         global_vlan: 4000
         interfaces:
 {% for port in port_vlans %}
@@ -33,15 +32,18 @@ dps:
 {% endfor %}
 
 vlans:
-{% for vlan in interfaces %}
-   {{ vlan.vlan }}:
-       vid: {{ vlans[vlan.vlan]['id'] }}
+{% for vlan in router_config.interfaces %}
+   vlan{{ vlan.vlan }}:
+       vid: {{ vlan.vlan }}
 {% if 'faucet_vips' in vlan %}
        faucet_vips: {{ vlan.faucet_vips | to_json }}
 {% else %}
-       faucet_vips: [ 10.0.{{ vlans[vlan.vlan]['id'] }}.254/24 ]
+       faucet_vips: [ 10.0.{{ vlan.vlan }}.254/24 ]
 {% endif %}
 {% if 'faucet_mac' in vlan %}
        faucet_mac: {{ vlan.faucet_mac }}
+{% endif %}
+{% if 'faucet_ext_vips' in vlan %}
+       faucet_ext_vips: {{ vlan.faucet_ext_vips }}
 {% endif %}
 {% endfor %}

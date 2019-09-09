@@ -1,20 +1,40 @@
+{% set item = item | int %}
+{% if 'peer_base_asn' in peer_config %}
+{% set asn = peer_config.peer_base_asn + item %}
+{% else %}
+{% set asn = item %}
+{% endif %}
 
-router bgp {{ item.asn | default(item.id) }}
-   neighbor 10.0.{{ vlans[item.vlan]['id'] }}.253 remote-as 65000
-   neighbor 10.0.{{ vlans[item.vlan]['id'] }}.253 route-map EXPORT out
+{% if 'peer_specific' in peer_config and item in peer_config.peer_specific %}
+{% if 'asn' in peer_config['peer_specific'][item] %}
+{% set asn = peer_config['peer_specific'][item]['asn'] %}
+{% endif %}
+{% endif %}
 
-{% for network in item.networks | default([]) %}
+
+router bgp {{ asn }}
+{% set export = false %}
+{% for vlan in peer_config.vlans %}
+   neighbor 10.0.{{ vlan.vlan }}.253 remote-as 65000
+{% if export %}
+   neighbor 10.0.{{ vlan.vlan }}.253 route-map EXPORT out
+{% set export = false %}
+{% endif %}
+   network 10.{{ vlan.vlan }}.{{ item }}.0/24
+{% endfor %}
+   !redistribute connected
+{% for network in peer_config.networks | default([]) %}
    network {{ network }}
 {% endfor %}
 !
 !
-{% for network in item.networks | default([]) %}
+{% for network in peer_config.networks | default([]) %}
 {% set k = loop.index %}
 ip prefix-list prefix_{{ k }} seq 5 permit {{ network }}
 
 {% set aspath = []  %}
 {% for i in range(k) %}
-{{ aspath.append( item.asn ) }}
+{{ aspath.append( asn ) }}
 {% endfor %}
 
 route-map EXPORT permit {{ k }}
@@ -24,3 +44,6 @@ route-map EXPORT permit {{ k }}
 {% endif %}
 !
 {% endfor %}
+
+log file /var/log/quagga/peer_{{ item }}.log informational
+log timestamp precision 3
