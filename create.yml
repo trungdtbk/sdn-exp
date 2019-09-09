@@ -1,0 +1,165 @@
+---
+
+- hosts: servers
+  roles:
+      - common
+
+- hosts: m17d
+  vars:
+      router_config:
+          router_name: router1
+          router_id: 10.0.100.101
+          switch_dpid: "0x0000e01aea17c548" # ATX-930-1
+          interfaces:
+              - vlan: 10 # facing peers in m162
+                peer_count: 3
+                switch_ports: [10, 11]
+                faucet_mac: "0e:00:00:00:00:10"
+                phys_intf: enp1s0f1 # connect to ATX-930-1 port1.0.11
+                peer_base_asn: 100
+
+              - vlan: 20 # facing peers (second interface) in m167
+                peer_count: 5
+                switch_ports: [11, 12]
+                #faucet_ext_vips: []
+                faucet_mac: "0e:00:00:00:00:20"
+                phys_intf: enp1s0f1 # connect to ATX-930-1 port1.0.11
+
+              - vlan: 100
+                ip: 10.0.100.101
+                peer_count: 1
+                switch_ports: [1,11]
+                faucet_vips: [ 10.0.100.201/24 ]
+                #faucet_ext_vips: []
+                faucet_mac: "0e:00:00:00:01:01"
+                phys_intf: enp1s0f1 # connect to ATX-930-1 port1.0.11
+                peer_specific:
+                    1:
+                        asn: 65000
+              - vlan: 200
+                peer_count: 0
+                ip: 10.0.200.101
+                faucet_vips: [ 10.0.200.201/24 ]
+                faucet_mac: "0e:00:00:00:02:01"
+                switch_ports: [5,11]
+                phys_intf: enp1s0f1 # connect to ATX-930-1 port1.0.11
+
+          borders:
+              - rid: 10.0.100.102
+                nexthop: 10.0.100.202
+
+  roles:
+      - grcp
+      - monitor
+      - router
+
+- hosts: m169
+  vars:
+      router_config:
+          router_name: router2
+          router_id: 10.0.100.102
+          switch_dpid: 0x0000e01aea17c523 # ATX-930-2
+          interfaces:
+              - vlan: 30 # facing peers (first interface) in m167
+                peer_count: 5
+                switch_ports: [10, 12]
+                faucet_mac: "0e:00:00:00:00:30"
+                phys_intf: enp2s0f0 # connect to ATX-930-2 port1.0.10
+              - vlan: 100
+                ip: 10.0.100.102
+                peer_count: 1
+                switch_ports: [1,10]
+                faucet_vips: [ 10.0.100.202/24 ]
+                #faucet_ext_vips: []
+                faucet_mac: "0e:00:00:00:01:02"
+                phys_intf: enp2s0f0 # connect to ATX-930-2 port1.0.10
+                peer_specific:
+                    1:
+                        asn: 65000
+              - vlan: 200
+                peer_count: 0
+                ip: 10.0.200.102
+                faucet_vips: [ 10.0.200.202/24 ]
+                faucet_mac: "0e:00:00:00:02:02"
+                switch_ports: [5,10]
+                phys_intf: enp2s0f0 # connect to ATX-930-2 port1.0.10
+          borders:
+              - rid: 10.0.100.101
+                nexthop: 10.0.100.201
+      reflector:
+          id: 1
+          vlans: [100, 200]
+          clients: [ 10.0.100.101, 10.0.100.102, 10.0.200.103 ]
+  roles:
+      - router
+      - reflector
+
+- hosts: m17c
+  vars:
+      router_config:
+          router_name: router3
+          router_id: 10.0.100.103
+          switch_dpid: 0x0000eccd6d9d4950 # ATX-510
+          interfaces:
+              - vlan: 40 # facing peers (first interface) in m167
+                peer_count: 2
+                switch_ports: [11]
+                faucet_mac: "0e:00:00:00:00:40"
+                phys_intf: enp1s0f0 # connect to ATX-510 port1.0.11
+              - vlan: 200
+                ip: 10.0.200.103
+                peer_count: 1
+                switch_ports: [4,5,11]
+                faucet_vips: [ 10.0.200.203/24 ]
+                #faucet_ext_vips: []
+                faucet_mac: "0e:00:00:00:02:03"
+                phys_intf: enp1s0f0 # connect to ATX-510 port1.0.11
+                peer_specific:
+                    1:
+                        asn: 65000
+          borders:
+              - rid: 10.0.100.101
+                nexthop: 10.0.200.201
+              - rid: 10.0.100.102
+                nexthop: 10.0.200.202
+
+      peer_config:
+          peer_base_asn: 200
+          peer_count: 2
+          vlans:
+              - vlan: 40
+                phys_intf: enp1s0f0
+  roles:
+      - router
+      - peer
+
+- hosts: m167
+  vars:
+      peer_config:
+          internet: true
+          peer_count: 5
+          vlans:
+              - vlan: 20 # interface 1
+                phys_intf: enp2s0f1 # connect to ATX-930-1 port1.0.12
+              - vlan: 30 # interface 2
+                phys_intf: enp2s0f0 # connect to ATX-930-2 port1.0.12
+          networks: [ 1.0.0.0/24 ]
+          peer_specific:
+              5:
+                  asn: 65000
+                  command: tail -f /dev/null
+                  image: trungdtbk/bgpreplay
+
+  roles:
+      - peer
+
+- hosts: m162
+  vars:
+      peer_config:
+          peer_base_asn: 100
+          peer_count: 3
+          vlans:
+              - vlan: 10
+                phys_intf: enp1s0
+  roles:
+      - peer
