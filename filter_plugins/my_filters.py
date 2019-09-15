@@ -8,6 +8,8 @@ class FilterModule(object):
         return {
                 'format_interfaces': self.format_interfaces,
                 'list_format': self.list_format,
+                'make_networks_config': self.make_networks_config,
+                'getattr': self.getattr,
                 }
 
     def format_interfaces(self, interfaces, vlans):
@@ -24,6 +26,28 @@ class FilterModule(object):
             return new_list
         except Exception as e:
             raise AnsibleFilterError('Error has occured: %s' % e)
+
+    def make_networks_config(self, vlans, idx=1):
+        networks_config = []
+        for vlan in vlans:
+            network_config = {}
+            if type(vlan) == int:
+                vid = vlan
+                ip = '10.0.%d.%s' % (vid, idx)
+            elif type(vlan) == dict:
+                vid = vlan['vlan']
+                ip = vlan.get('ip') or '10.0.%d.%s' % (vid, idx)
+            networks_config.append({
+                'name': 'sdiro_net%d' % vid,
+                'ipv4_address': ip})
+        return networks_config
+
+    def getattr(self, a_dict, key, default=None):
+        if key in a_dict:
+            return a_dict[key]
+        elif default is not None:
+            return default
+        return 'undefined'
 
     def list_format(self, a_list):
         """turn a list of ints into a list of items with format 'value:value'."""

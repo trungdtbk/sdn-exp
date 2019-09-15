@@ -1,0 +1,10 @@
+---
+- name: "build docker image {{ image_name }} for {{ role_name }}"
+  docker_image:
+      name: "{{ image_name }}"
+      repository: "{{ image_name }}"
+      pull: yes
+      force: yes
+      state: present
+  register: image_name_change
+

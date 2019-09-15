@@ -1,0 +1,63 @@
+---
+- name: restart grcp container
+  shell: docker restart grcp
+  when: inventory_hostname == 'm17d'
+
+- name: restart fbgp router container
+  shell: docker restart fbgp_router
+  when: inventory_hostname in ["m169", "m17c", "m17d"]
+
+- name: pause 2 minutes before start
+  pause:
+      minutes: 2
+
+- name: collect bgp status
+  shell: docker exec reflector vtysh -c 'show ip bgp sum'
+  register: bgp_status
+  failed_when: "'Active' in bgp_status.stdout or 'Connect' in bgp_status.stdout"
+  when: inventory_hostname == 'm169'
+
+- name: start tcpdump to capture openflow packets
+  shell: "tcpdump -i {{ openflow_intf[inventory_hostname] }} -w {{ experiment_home }}/logs/{{ inventory_hostname }}-openflow-{{ ansible_date_time.year }}{{ ansible_date_time.month }}{{ ansible_date_time.day }}{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}-{{ item.count }}-{{ item.rate }}.pcap -n -Q out port 6653"
+  async: 3600
+  poll: 0
+  register: tcpdump_of
+  when: inventory_hostname in ["m169", "m17c", "m17d"]
+
+- name: start tcpdump to capture bgp packets
+  shell: "tcpdump -i {{ bgp_intf[inventory_hostname] }} -w {{ experiment_home }}/logs/{{ inventory_hostname }}-bgp-{{ ansible_date_time.year }}{{ ansible_date_time.month }}{{ ansible_date_time.day }}{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}-{{ item.count }}-{{ item.rate }}.pcap -n port 9179 or port 179"
+  async: 3600
+  poll: 0
+  register: tcpdump_bgp
+  when: inventory_hostname in ["m167", "m169", "m17c", "m17d"]
+
+- name: restart bgp generator container
+  shell: docker restart "{{ generator.name }}"
+  when: inventory_hostname == "m167"
+
+- pause:
+    minutes: 1
+
+- name: start bgp generator 
+  shell: "docker exec {{ generator.name }} bgpreplay --local_as {{ generator.asn }} --peers 10.0.30.253:9179/65000 --count {{ item.count }} --agent yabgp --nexthop 10.0.30.1 --rate {{ item.rate }} -t announce --logfile /var/log/quagga/bgpreplay-{{ ansible_date_time.year }}{{ ansible_date_time.month }}{{ ansible_date_time.day }}{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}-{{ item.count }}-{{ item.rate }}.log"
+  when: inventory_hostname == "m167"
+
+- pause:
+    minutes: 1
+
+- name: stop tcpdump
+  shell: pkill -9 tcpdump
+  when: inventory_hostname in ["m167", "m169", "m17c", "m17d"]
+
+- name: gather data files
+  synchronize:
+      src: "{{ experiment_home }}/logs/"
+      dest: "{{ playbook_dir }}/data/{{ inventory_hostname }}"
+      mode: pull
+      rsync_opts:
+          - "--exclude=faucet_exception.log"
+          - "--exclude=gauge_exception.log"
+          - "--exclude=exabgp.sock="
+          - "--exclude=faucet.sock="
+  when: inventory_hostname in ["m167", "m169", "m17c", "m17d"]
+

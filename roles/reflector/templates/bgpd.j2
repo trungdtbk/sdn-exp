@@ -6,3 +6,5 @@ router bgp 65000
   neighbor {{ client }} route-reflector-client
 
 {% endfor %}
+
+log file {{ experiment_home }}/logs/reflector.log informational

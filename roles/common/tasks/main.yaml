@@ -10,3 +10,7 @@
       - logs
       - mrt_files
 
+- name: allow tcpdump to run without root
+  become: yes
+  become_user: root
+  shell: setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump

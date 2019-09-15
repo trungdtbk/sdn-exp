@@ -1,0 +1,29 @@
+---
+- hosts: servers
+  become: yes
+  become_user: root
+  tasks:
+      - name: permission
+        shell: chmod 777 -R {{ experiment_home }}/logs
+- hosts: servers
+  any_errors_fatal: true
+  vars:
+      generator:
+          name: peer_5
+          asn: 5
+      bgp_intf:
+          m167: enp2s0f0.30
+          m169: enp2s0f0.100
+          m17c: enp1s0f0.200
+          m17d: enp1s0f1.100
+      openflow_intf:
+          m169: eno1
+          m17c: enp0s31f6 
+          m17d: enp1s0f0
+  tasks:
+      - include_tasks: roles/expr/tasks/convergence.yaml
+        loop:
+            - { count: 500, rate: 2 }
+            - { count: 1000, rate: 10 }
+            - { count: 2000, rate: 10 }
+            - { count: 5000, rate: 5 }

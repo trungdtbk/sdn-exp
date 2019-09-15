@@ -1,0 +1,17 @@
+---
+
+- name: start tcpdump
+  shell: "tcpdump -i {{ phys_intf }} -w {{ experiment_home }}/data/{{ expr_name }}.pcap -n {{ filters }} > /dev/null 2>&1"
+  async: 3600
+  poll: 0
+  register: tcpdump
+
+
+- name: stop tcpdump
+  shell: "pkill -9 tcpdump"
+
+- name: check if tcpdump has stopped
+  async_status:
+      jid: "{{ tcpdump.finished }}"
+  retries: 5
+  register: tcpdump_has_stopped
