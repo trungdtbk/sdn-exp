@@ -1,49 +1,56 @@
-{% set item = item | int %}
+{%- set item = item | int %}
 {% if 'peer_base_asn' in peer_config %}
-{% set asn = peer_config.peer_base_asn + item %}
+{%- set asn = peer_config.peer_base_asn + item %}
 {% else %}
-{% set asn = item %}
+{%- set asn = item %}
 {% endif %}
-
 {% if 'peer_specific' in peer_config and item in peer_config.peer_specific %}
 {% if 'asn' in peer_config['peer_specific'][item] %}
-{% set asn = peer_config['peer_specific'][item]['asn'] %}
+{%- set asn = peer_config['peer_specific'][item]['asn'] %}
 {% endif %}
 {% endif %}
-
-
 router bgp {{ asn }}
-{% set export = false %}
+   timers bgp 30 180
+!   bgp router-id 10.{{ asn }}.{{ asn }}.{{ asn }}
 {% for vlan in peer_config.vlans %}
    neighbor 10.0.{{ vlan.vlan }}.253 remote-as 65000
-{% if export %}
+   neighbor 10.0.{{ vlan.vlan }}.253 advertisement-interval 1
+{% if loop.index == 1 %}
    neighbor 10.0.{{ vlan.vlan }}.253 route-map EXPORT out
-{% set export = false %}
+{% else %}
+   neighbor 10.0.{{ vlan.vlan }}.253 route-map EXPORT out
 {% endif %}
    network 10.{{ vlan.vlan }}.{{ item }}.0/24
 {% endfor %}
-   !redistribute connected
+   redistribute connected
 {% for network in peer_config.networks | default([]) %}
    network {{ network }}
 {% endfor %}
 !
-!
-{% for network in peer_config.networks | default([]) %}
-{% set k = loop.index %}
-ip prefix-list prefix_{{ k }} seq 5 permit {{ network }}
-
-{% set aspath = []  %}
-{% for i in range(k) %}
+{%- set aspath = []  %}
+{% for i in range(asn) %}
 {{ aspath.append( asn ) }}
 {% endfor %}
-
+{% for network in peer_config.networks | default([]) %}
+{%- set k = loop.index %}
+ip prefix-list prefix_{{ k }} seq 5 permit {{ network }}
 route-map EXPORT permit {{ k }}
 {% if aspath %}
  match ip address prefix-list prefix_{{ k }}
  set as-path prepend {{ aspath|join(' ') }}
 {% endif %}
 !
+route-map NOEXPORT deny {{ k }}
+ match ip address prefix-list prefix_{{ k }}
 {% endfor %}
-
-log file /var/log/quagga/peer_{{ item }}.log informational
-log timestamp precision 3
+{% for vlan in peer_config.vlans %}
+ip prefix-list prefix_100 seq {{ loop.index }} permit 10.{{ vlan.vlan }}.{{ item }}.0/24
+ip prefix-list prefix_100 seq {{ loop.index + 50 }} permit 10.0.{{ vlan.vlan }}.0/24
+{% endfor %}
+route-map NOEXPORT permit 100
+ match ip address prefix-list prefix_100
+route-map EXPORT permit 100
+ match ip address prefix-list prefix_100
+! 
+!log file /var/log/quagga/peer_{{ item }}.log informational
+!log timestamp precision 3

@@ -1,0 +1,14 @@
+---
+
+- hosts: m169
+  tasks:
+      - name: check reflector status
+        shell: "docker exec reflector vtysh -c 'show ip bgp nei {{ item }}' | grep -c -i established > /dev/null "
+        with_items:
+            - 10.0.100.101
+            - 10.0.100.102
+            - 10.0.200.103
+
+- hosts: m17d
+  become: yes
+  tasks:

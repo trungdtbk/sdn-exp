@@ -1,0 +1,78 @@
+Connecting to host 1.0.0.1, port 5201
+[  4] local 10.0.10.1 port 38066 connected to 1.0.0.1 port 5201
+[ ID] Interval           Transfer     Bandwidth       Total Datagrams
+[  4]   0.00-1.00   sec  82.5 MBytes   692 Mbits/sec  10555  
+[  4]   1.00-2.00   sec  92.8 MBytes   778 Mbits/sec  11879  
+[  4]   2.00-3.00   sec  90.6 MBytes   760 Mbits/sec  11600  
+[  4]   3.00-4.00   sec  90.1 MBytes   755 Mbits/sec  11527  
+[  4]   4.00-5.00   sec  89.6 MBytes   751 Mbits/sec  11464  
+[  4]   5.00-6.00   sec  89.8 MBytes   753 Mbits/sec  11488  
+[  4]   6.00-7.00   sec  89.3 MBytes   749 Mbits/sec  11432  
+[  4]   7.00-8.00   sec  90.2 MBytes   756 Mbits/sec  11543  
+[  4]   8.00-9.00   sec  91.3 MBytes   766 Mbits/sec  11689  
+[  4]   9.00-10.00  sec  91.5 MBytes   768 Mbits/sec  11712  
+[  4]  10.00-11.00  sec  89.8 MBytes   753 Mbits/sec  11496  
+[  4]  11.00-12.00  sec  90.4 MBytes   758 Mbits/sec  11569  
+[  4]  12.00-13.00  sec  90.2 MBytes   757 Mbits/sec  11552  
+[  4]  13.00-14.00  sec  91.3 MBytes   765 Mbits/sec  11681  
+[  4]  14.00-15.00  sec  90.0 MBytes   755 Mbits/sec  11516  
+[  4]  15.00-16.00  sec  91.2 MBytes   765 Mbits/sec  11673  
+[  4]  16.00-17.00  sec  89.5 MBytes   751 Mbits/sec  11460  
+[  4]  17.00-18.00  sec  90.4 MBytes   758 Mbits/sec  11565  
+[  4]  18.00-19.00  sec  91.5 MBytes   768 Mbits/sec  11714  
+[  4]  19.00-20.00  sec  90.1 MBytes   756 Mbits/sec  11535  
+[  4]  20.00-21.00  sec  89.6 MBytes   751 Mbits/sec  11463  
+[  4]  21.00-22.00  sec  90.2 MBytes   757 Mbits/sec  11552  
+[  4]  22.00-23.00  sec  89.6 MBytes   751 Mbits/sec  11464  
+[  4]  23.00-24.00  sec  90.2 MBytes   757 Mbits/sec  11544  
+[  4]  24.00-25.00  sec  88.8 MBytes   745 Mbits/sec  11364  
+[  4]  25.00-26.00  sec  90.5 MBytes   759 Mbits/sec  11580  
+[  4]  26.00-27.00  sec  90.5 MBytes   759 Mbits/sec  11584  
+[  4]  27.00-28.00  sec  90.1 MBytes   756 Mbits/sec  11528  
+[  4]  28.00-29.00  sec  88.8 MBytes   745 Mbits/sec  11368  
+[  4]  29.00-30.00  sec  89.6 MBytes   751 Mbits/sec  11464  
+[  4]  30.00-31.00  sec  90.6 MBytes   760 Mbits/sec  11600  
+[  4]  31.00-32.00  sec  90.4 MBytes   759 Mbits/sec  11577  
+[  4]  32.00-33.00  sec  89.3 MBytes   749 Mbits/sec  11432  
+[  4]  33.00-34.00  sec  89.4 MBytes   750 Mbits/sec  11448  
+[  4]  34.00-35.00  sec  90.6 MBytes   760 Mbits/sec  11599  
+[  4]  35.00-36.00  sec  90.7 MBytes   761 Mbits/sec  11607  
+[  4]  36.00-37.00  sec  89.8 MBytes   753 Mbits/sec  11497  
+[  4]  37.00-38.00  sec  89.6 MBytes   751 Mbits/sec  11464  
+[  4]  38.00-39.00  sec  89.6 MBytes   751 Mbits/sec  11464  
+[  4]  39.00-40.00  sec  89.9 MBytes   754 Mbits/sec  11504  
+[  4]  40.00-41.00  sec  89.7 MBytes   752 Mbits/sec  11480  
+[  4]  41.00-42.00  sec  89.8 MBytes   753 Mbits/sec  11496  
+[  4]  42.00-43.00  sec  88.9 MBytes   746 Mbits/sec  11378  
+[  4]  43.00-44.00  sec  88.9 MBytes   746 Mbits/sec  11381  
+[  4]  44.00-45.00  sec  88.8 MBytes   745 Mbits/sec  11368  
+[  4]  45.00-46.00  sec  89.8 MBytes   753 Mbits/sec  11489  
+[  4]  46.00-47.00  sec  91.6 MBytes   768 Mbits/sec  11726  
+[  4]  47.00-48.00  sec  90.6 MBytes   760 Mbits/sec  11594  
+[  4]  48.00-49.00  sec  89.0 MBytes   746 Mbits/sec  11391  
+[  4]  49.00-50.00  sec  90.8 MBytes   761 Mbits/sec  11617  
+[  4]  50.00-51.00  sec  90.5 MBytes   759 Mbits/sec  11583  
+[  4]  51.00-52.00  sec  90.9 MBytes   763 Mbits/sec  11638  
+[  4]  52.00-53.00  sec  90.4 MBytes   758 Mbits/sec  11572  
+[  4]  53.00-54.00  sec  89.3 MBytes   749 Mbits/sec  11432  
+[  4]  54.00-55.00  sec  89.4 MBytes   750 Mbits/sec  11439  
+[  4]  55.00-56.00  sec  90.2 MBytes   757 Mbits/sec  11543  
+[  4]  56.00-57.00  sec  90.5 MBytes   759 Mbits/sec  11585  
+[  4]  57.00-58.00  sec  89.7 MBytes   752 Mbits/sec  11479  
+[  4]  58.00-59.00  sec  89.2 MBytes   748 Mbits/sec  11417  
+[  4]  59.00-60.00  sec  89.9 MBytes   754 Mbits/sec  11503  
+[  4]  60.00-61.00  sec  90.1 MBytes   756 Mbits/sec  11529  
+[  4]  61.00-62.00  sec  90.0 MBytes   755 Mbits/sec  11519  
+[  4]  62.00-63.00  sec  89.3 MBytes   749 Mbits/sec  11429  
+[  4]  63.00-64.00  sec  89.6 MBytes   752 Mbits/sec  11475  
+[  4]  64.00-65.00  sec  89.6 MBytes   752 Mbits/sec  11473  
+[  4]  65.00-66.00  sec  89.8 MBytes   754 Mbits/sec  11500  
+[  4]  66.00-67.00  sec  89.7 MBytes   752 Mbits/sec  11480  
+[  4]  67.00-68.00  sec  90.3 MBytes   757 Mbits/sec  11553  
+[  4]  68.00-69.00  sec  90.6 MBytes   760 Mbits/sec  11592  
+[  4]  69.00-70.00  sec  89.8 MBytes   753 Mbits/sec  11488  
+[  4]  69.00-70.00  sec  89.8 MBytes   753 Mbits/sec  11488  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+[  4]   0.00-70.00  sec  6.22 GBytes   763 Mbits/sec  0.000 ms  0/814902 (0%)  
+[  4] Sent 814902 datagrams

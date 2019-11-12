@@ -48,8 +48,25 @@
   roles:
       - grcp
       - router
+        interfaces:
+            - vlan: 10
+              switch_ports: [ 10, 11 ]
+              faucet_mac: ""
+              peers:
+                  - id: 1
+                  - id: 2
+                    asn: 65000
+            - vlan: 20
+              faucet_mac: ""
+              switch_ports: []
+              peers:
+            - vlan: 100
+
+
       - monitor
       - peer
+        peers:
+            - id: 2
 
 - hosts: m169
   vars:
@@ -88,6 +105,34 @@
 
 - hosts: m17c
   vars:
+      router_config:
+          phys_intf: enp1s0f0
+          switch_dpid: 0x000
+          router_name: router3
+          interfaces:
+              - vlan: 100
+                reflector: 10.0.100.250
+                switch_ports: []
+                faucet_vips: []
+                faucet_mac: ""
+              - vlan: 200
+                switch_ports: []
+                faucet_mac: ""
+                peers: 5
+          borders:
+              - rid: 1
+                nexthop: ""
+              - rid: 2
+                nexthop: ""
+              - rid: 3
+                nexthop: ""
+
+      peer_config:
+          - vlan: 200
+            phys_intf: enp0s0f0
+            peers: 5
+            
+
       phys_intf: enp1s0f0
       switch_dpid: 0x0000eccd6d9d4950 # ATX-510
       router_id: 10.0.100.103
@@ -159,22 +204,23 @@
             networks: ["2.0.0.0/24", "3.0.0.0/24", "4.0.0.0/24", "1.0.0.0/24"]
             #networks: ["2.0.0.0/24"]
   roles:
-      - peer
+      #- provider
 
 - hosts: m167
   vars:
-      phys_intf: enp2s0f0
-      peers:
-          - id: 1 # peer3
-            asn: 3
-            vlan: vlan30
-            networks: ["3.0.0.0/24", "4.0.0.0/24", "1.0.0.0/24", "2.0.0.0/24"]
-            #networks: ["3.0.0.0/24"]
-          - id: 2 # peer4
-            asn: 4
-            vlan: vlan30
-            networks: ["4.0.0.0/24", "1.0.0.0/24", "2.0.0.0/24", "3.0.0.0/24"]
-            #networks: ["4.0.0.0/24"]
+      peer_config:
+          count: 5
+          vlans:
+              - vlan: 10
+                phys_intf: enp2s0f0
+              - vlan: 20
+                phys_intf: enp2s0f1
+          networks: [ 1.0.0.0/24 ]
+          peer_specific:
+              1:
+                  asn: 65000
+                  command: tail -f /dev/null
+
   roles:
       - peer
 

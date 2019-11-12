@@ -1,0 +1,22 @@
+---
+
+- hosts: m169
+  vars:
+      alist: [10, 20]
+      keys: [1,2,3]
+      peer_config:
+          1: 
+             asn: 65000
+             command: abc
+          2:
+              asn: 100
+  tasks:
+      - name: debug
+        debug: 
+            msg: "{{ alist | map('regex_replace', '(.*)', 'vlan\\1') | list }}"
+      - name: debug2
+        debug:
+            #msg: '{{ (peer_config|getattr(item)|getattr("command")| default(omit) )}}'
+            msg: "{{ ((peer_config|default({}))[item|int]|default({})).command|default(omit) }}"
+        with_sequence: "start=1 end={{ peer_config.peer_count | default(3) }}"
+

@@ -1,0 +1,14 @@
+Oct 15 20:20:39 gauge  INFO     Reloading configuration
+Oct 15 20:20:39 gauge  INFO     config complete
+Oct 15 20:20:41 gauge  INFO     DPID 246406201197896 (0xe01aea17c548) up
+Oct 15 20:20:41 gauge.port_state INFO     starting
+Oct 15 20:20:41 gauge.port_stats INFO     starting
+Oct 15 20:20:41 gauge.port_stats INFO     stopping
+Oct 15 20:20:41 gauge  INFO     DPID 246406201197859 (0xe01aea17c523) up
+Oct 15 20:20:41 gauge.port_state INFO     starting
+Oct 15 20:20:41 gauge.port_stats INFO     starting
+Oct 15 20:20:41 gauge.port_stats INFO     stopping
+Oct 15 20:20:41 gauge  INFO     DPID 260367051475280 (0xeccd6d9d4950) up
+Oct 15 20:20:41 gauge.port_state INFO     starting
+Oct 15 20:20:41 gauge.port_stats INFO     starting
+Oct 15 20:20:41 gauge.port_stats INFO     stopping

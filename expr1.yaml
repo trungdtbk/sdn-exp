@@ -5,6 +5,7 @@
   tasks:
       - name: permission
         shell: chmod 777 -R {{ experiment_home }}/logs
+
 - hosts: servers
   any_errors_fatal: true
   vars:
@@ -13,17 +14,23 @@
           asn: 5
       bgp_intf:
           m167: enp2s0f0.30
-          m169: enp2s0f0.100
+          m169: enp2s0f0.30
           m17c: enp1s0f0.200
           m17d: enp1s0f1.100
+          m162: enp1s0.10 
       openflow_intf:
           m169: eno1
           m17c: enp0s31f6 
           m17d: enp1s0f0
+      expr: openflow_mode
   tasks:
       - include_tasks: roles/expr/tasks/convergence.yaml
         loop:
-            - { count: 500, rate: 2 }
-            - { count: 1000, rate: 10 }
-            - { count: 2000, rate: 10 }
-            - { count: 5000, rate: 5 }
+            - { count: 100, rate: 5, type: 'update' }
+            - { count: 500, rate: 10, type: 'update' }
+            - { count: 1000, rate: 10, type: 'update' }
+            - { count: 1500, rate: 10, type: 'mixed' }
+            - { count: 2000, rate: 10, type: "mixed" }
+            - { count: 2500, rate: 0, type: "mixed", mrt: '--mrt /mrt_files/updates.20190101.bz2' }
+            - { count: 0, rate: 0, type: "mixed", mrt: '--mrt /mrt_files/updates.20190101.0015.bz2' }
+            - { count: 3000, rate: 0, type: "mixed", text: '--text /mrt_files/updates.txt' }

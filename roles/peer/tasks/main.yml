@@ -23,6 +23,15 @@
   with_sequence: "start=1 end={{ peer_config.peer_count | default(1) }}"
   register: bgpd_change
 
+- name: copy mrt files
+  copy:
+      src: "{{ item }}"
+      dest: "{{ experiment_home }}/mrt_files/"
+  loop:
+      - "files/updates.20190101.bz2"
+      - "files/updates.txt"
+  when: ansible_host == 'm167'
+
 - name: creating maclvan networks for peers
   docker_network:
       name: "sdiro_net{{ item.vlan }}"
@@ -62,30 +71,35 @@
           #BGPREPLAY_MRT: "/mrt_files/updates.20181001.0030.bz2"
   with_sequence: "start=1 end={{ peer_config.peer_count | default(1) }}"
 
-#- name: install tc rule simulating wan
-#  shell: docker exec peer_{{ item.asn }}_{{ item.id }} tc qdisc add dev eth1 root netem delay {{ item.asn }}ms
-#  loop: "{{ peers | selectattr('asn', '<', 100) | list }}"
+- name: install tc rule simulating wan
+  ignore_errors: yes
+  shell: docker exec peer_{{ item }} tc qdisc add dev eth1 root netem delay {{ item }}ms
+  with_sequence: "start=1 end={{ peer_config.peer_count | default(1) }}"
 
-- name: create a bridge linking peer containers
-  docker_network:
-      name: sdiro_peer_internal
-      driver: bridge
-      ipam_options:
-          subnet: '1.0.0.0/24'
-          gateway: '1.0.0.253'
-      connected: "{{ range(1, peer_config.peer_count)|list|map('regex_replace', '(.*)','peer_\\1')|list }}"
-  when: peer_config.internet is defined and peer_config.internet == true
+- name: disable rp_filter
+  shell: "for i in `docker exec peer_{{ item }} ls /sys/class/net|grep eth`; do docker exec peer_{{ item }} sysctl -w net.ipv4.conf.$i.rp_filter=0; done; docker exec peer_{{ item }} sysctl -w net.ipv4.conf.all.rp_filter=0"
+  with_sequence: "start=1 end={{ peer_config.peer_count | default(1) }}"
 
-- name: create a container simulating internet
-  docker_container:
-      name: sdiro_internet
-      image: "networkstatic/iperf3"
-      hostname: sdiro_internet
-      privileged: true
-      capabilities:
-          - net_admin
-      networks:
-          - name: sdiro_peer_internal
-            ipv4_address: 1.0.0.250
-      command: "iperf3 -s"
-  when: peer_config.internet is defined and peer_config.internet == true
+#- name: create a bridge linking peer containers
+#  docker_network:
+#      name: sdiro_peer_internal
+#      driver: bridge
+#      ipam_options:
+#          subnet: '1.0.0.0/24'
+#          gateway: '1.0.0.253'
+#      connected: "{{ range(1, peer_config.peer_count)|list|map('regex_replace', '(.*)','peer_\\1')|list }}"
+#  when: peer_config.internet is defined and peer_config.internet == true
+
+#- name: create a container simulating internet
+#  docker_container:
+#      name: sdiro_internet
+#      image: "networkstatic/iperf3"
+#      hostname: sdiro_internet
+#      privileged: true
+#      capabilities:
+#          - net_admin
+#      networks:
+#          - name: sdiro_peer_internal
+#            ipv4_address: 1.0.0.250
+#      command: "iperf3 -s"
+#  when: peer_config.internet is defined and peer_config.internet == true

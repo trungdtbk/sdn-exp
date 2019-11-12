@@ -1,0 +1,20 @@
+2019-09-20 22:13:14,563 bgpreplay INFO {'withdraw': [], 'nlri': ['245.62.215.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 56382, 4097, 35151, 4729], 'local_pref': 134, 'origin': 'incomplete', 'med': 43}}
+2019-09-20 22:13:14,767 bgpreplay INFO {'withdraw': [], 'nlri': ['159.125.203.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5], 'local_pref': 100, 'origin': 'egp', 'med': 31}}
+2019-09-20 22:13:14,972 bgpreplay INFO {'withdraw': [], 'nlri': ['129.45.43.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 2103], 'local_pref': 136, 'origin': 'igp', 'med': 39}}
+2019-09-20 22:13:15,182 bgpreplay INFO {'withdraw': [], 'nlri': ['96.88.178.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5], 'local_pref': 106, 'origin': 'egp', 'med': 24}}
+2019-09-20 22:13:15,391 bgpreplay INFO {'withdraw': [], 'nlri': ['39.13.82.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 20619, 16342, 10977, 19572], 'local_pref': 141, 'origin': 'egp', 'med': 95}}
+2019-09-20 22:13:15,602 bgpreplay INFO {'withdraw': [], 'nlri': ['36.1.180.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 38294, 9860, 43407, 52536, 56145], 'local_pref': 123, 'origin': 'incomplete', 'med': 75}}
+2019-09-20 22:13:15,805 bgpreplay INFO {'withdraw': [], 'nlri': ['166.147.108.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 38435], 'local_pref': 133, 'origin': 'igp', 'med': 32}}
+2019-09-20 22:13:16,017 bgpreplay INFO {'withdraw': [], 'nlri': ['3.168.166.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 57155], 'local_pref': 118, 'origin': 'igp', 'med': 19}}
+2019-09-20 22:13:16,229 bgpreplay INFO {'withdraw': [], 'nlri': ['80.34.253.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 50426], 'local_pref': 149, 'origin': 'egp', 'med': 100}}
+2019-09-20 22:13:16,436 bgpreplay INFO {'withdraw': [], 'nlri': ['135.35.20.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5], 'local_pref': 115, 'origin': 'incomplete', 'med': 100}}
+2019-09-20 22:13:16,639 bgpreplay INFO {'withdraw': [], 'nlri': ['91.231.217.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 10413, 53513], 'local_pref': 145, 'origin': 'incomplete', 'med': 52}}
+2019-09-20 22:13:16,843 bgpreplay INFO {'withdraw': [], 'nlri': ['26.98.240.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5], 'local_pref': 105, 'origin': 'egp', 'med': 18}}
+2019-09-20 22:13:17,048 bgpreplay INFO {'withdraw': [], 'nlri': ['197.237.49.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 15063, 47740, 11541, 57617, 26656], 'local_pref': 105, 'origin': 'egp', 'med': 49}}
+2019-09-20 22:13:17,253 bgpreplay INFO {'withdraw': [], 'nlri': ['161.101.200.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 26253, 47196, 12552, 37859], 'local_pref': 103, 'origin': 'incomplete', 'med': 41}}
+2019-09-20 22:13:17,458 bgpreplay INFO {'withdraw': [], 'nlri': ['72.26.31.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 3928, 6859, 33849, 18462], 'local_pref': 103, 'origin': 'igp', 'med': 48}}
+2019-09-20 22:13:17,665 bgpreplay INFO {'withdraw': [], 'nlri': ['126.200.248.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 16746, 58594, 39960, 35395], 'local_pref': 136, 'origin': 'igp', 'med': 1}}
+2019-09-20 22:13:17,874 bgpreplay INFO {'withdraw': [], 'nlri': ['178.149.1.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5], 'local_pref': 128, 'origin': 'igp', 'med': 100}}
+2019-09-20 22:13:18,085 bgpreplay INFO {'withdraw': [], 'nlri': ['206.27.224.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 58467, 4370, 29919, 54396], 'local_pref': 111, 'origin': 'igp', 'med': 50}}
+2019-09-20 22:13:18,290 bgpreplay INFO {'withdraw': [], 'nlri': ['149.199.153.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 63016, 34431, 54464, 6565, 38420], 'local_pref': 124, 'origin': 'igp', 'med': 86}}
+2019-09-20 22:13:18,496 bgpreplay INFO {'withdraw': [], 'nlri': ['190.194.141.0/24'], 'attr': {'nexthop': '10.0.30.1', 'as_path': [5, 21730, 1936, 58032, 48595, 20420], 'local_pref': 140, 'origin': 'igp', 'med': 24}}

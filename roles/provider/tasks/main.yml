@@ -1,0 +1,29 @@
+---
+
+
+- name: creating provider docker containers
+  docker_container:
+      name: "peer_{{ item['asn'] }}_{{ item['id'] }}"
+      image: "{{ peer_image }}"
+      hostname: "peer_{{ item['asn'] }}_{{ item['id'] }}"
+      privileged: true
+      recreate: "{{ True if (image_build.changed or zebra_change.changed or bgpd_change.changed) else omit }}"
+      command: "{{ peer_command | default(omit) }}"
+      capabilities:
+          - net_admin
+      networks:
+          - name: "sdiro_net{{ vlans[item['vlan']]['id'] }}"
+            ipv4_address: "{{ item['ip'] | default('10.0.%s.%s' | format(vlans[item['vlan']]['id'],  item['id'])) }}"
+      volumes:
+          - "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_zebra.conf:/etc/quagga/zebra.conf"
+          - "{{ experiment_home }}/configs/peer_{{ item['asn'] }}_{{ item['id'] }}_bgpd.conf:/etc/quagga/bgpd.conf"
+          - "{{ experiment_home }}/mrt_files:/mrt_files"
+          - "{{ experiment_home }}/logs:/var/log/quagga"
+      env:
+          BGPREPLAY_AGENT: yabgp
+          BGPREPLAY_PEERS: "10.0.{{ vlans[item.vlan]['id'] }}.253:9179/65000"
+          BGPREPLAY_NEXTHOP: "{{ item['ip'] | default('10.0.%s.%s' | format(vlans[item['vlan']]['id'], 1)) }}"
+          BGPREPLAY_LOCAL_IP: "{{ item['ip'] | default('10.0.%s.%s' | format(vlans[item['vlan']]['id'],  item['id'])) }}"
+          #BGPREPLAY_MRT: "/mrt_files/updates.20181001.0030.bz2"
+  loop: "{{ peers }}"
+

@@ -1,0 +1,9 @@
+2019/09/28 18:59:25.133 BGP: BGPd 0.99.22.4 starting: vty@2605, bgp@<all>:179
+2019/09/28 18:59:49.742 BGP: 10.0.30.253 unrecognized capability code: 6 - ignored
+2019/09/28 19:00:03.890 BGP: 10.0.20.253 unrecognized capability code: 6 - ignored
+2019/09/28 19:17:22.900 BGP: 10.0.30.253 unrecognized capability code: 6 - ignored
+2019/09/28 19:17:22.958 BGP: 10.0.20.253 unrecognized capability code: 6 - ignored
+2019/09/28 19:24:44.313 BGP: 10.0.30.253 unrecognized capability code: 6 - ignored
+2019/09/28 19:24:44.328 BGP: 10.0.20.253 unrecognized capability code: 6 - ignored
+2019/09/28 19:32:59.552 BGP: 10.0.30.253 unrecognized capability code: 6 - ignored
+2019/09/28 19:32:59.674 BGP: 10.0.20.253 unrecognized capability code: 6 - ignored

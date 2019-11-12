@@ -1,0 +1,2 @@
+2019-09-28 19:36:24,306 bgpreplay INFO {'withdraw': [], 'attr': {'local_pref': 100, 'nexthop': '10.0.20.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24']}
+2019-09-28 19:36:44,329 bgpreplay INFO {'withdraw': ['1.0.0.0/24'], 'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': []}

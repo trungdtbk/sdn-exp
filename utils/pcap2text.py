@@ -235,6 +235,7 @@ if __name__ == '__main__':
     elif proto == 'bgp':
         if port:
             pktlib.bgp.TCP_SERVER_PORT = port
+        port = port or 179
         filters = PortFilter(port)
         if 'update' in filter_str:
             filters = BGPUpdateFilter()

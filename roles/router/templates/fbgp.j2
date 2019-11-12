@@ -4,19 +4,19 @@ routerid: {{ router_config.router_id }}
 peers:
 {% for vlan in router_config.interfaces %}
 {% if 'ip' in vlan %}
-{% set local_ip = vlan.ip %}
+{%- set local_ip = vlan.ip %}
 {% else %}
-{% set local_ip = '10.0.%s.253' % vlan.vlan %}
+{%- set local_ip = '10.0.%s.253' % vlan.vlan %}
 {% endif %}
-{% set asn_base = 0 %}
+{%- set asn_base = 0 %}
 {% if 'peer_base_asn' in vlan %}
-{% set asn_base = vlan.peer_base_asn %}
+{%- set asn_base = vlan.peer_base_asn %}
 {% endif %}
 {% for peerid in range(1, vlan.peer_count + 1) %}
 {% if peerid in vlan.peer_specific | default({}) and 'asn' in vlan.peer_specific[peerid] %}
-{% set asn = vlan.peer_specific[peerid]['asn'] %}
+{%- set asn = vlan.peer_specific[peerid]['asn'] %}
 {% else %}
-{% set asn = peerid + asn_base %}
+{%- set asn = peerid + asn_base %}
 {% endif %}
 - peer_ip: 10.0.{{ vlan.vlan }}.{{ peerid }}
   peer_as: {{ asn }}

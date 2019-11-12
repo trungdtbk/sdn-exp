@@ -1,0 +1,29 @@
+---
+# BGP Update Generator
+- name: pull bgpreplay image
+  docker_image:
+      name: "trungdtbk/bgpreplay"
+  register: bgpreplay_image
+
+- name: create bgpgen container
+  docker_container:
+      name: bgpgen
+      image: trungdtbk/bgpreplay
+      privileged: true
+      recreate: "{{ True if bgpreplay_image.changed else omit }}"
+      capabilities:
+          - net_admin
+      command: tail -f /dev/null
+      env:
+          BGPREPLAY_AGENT: yabgp
+          BGPREPLAY_PEERS: "10.0.10.253:1179/65000"
+          BGPREPLAY_LOCAL_IP: "10.0.10.123"
+          BGPREPLAY_LOCAL_AS: 65000
+          BGPREPLAY_NEXTHOP: "{{ interfaces | selectattr('peers', 'defined') | map(attribute='peers') | flatten | map(attribute='peerip') | join(' ') }}"
+          BGPREPLAY_MRT: "/mrt_files/updates.20181001.0030.bz2"
+      volumes:
+          - "{{ experiment_home }}/mrt_files:/mrt_files"
+      networks:
+          - name: sdiro_net10
+            ipv4_address: 10.0.10.123
+  when: mrt_change.changed or bgpreplay_image.changed

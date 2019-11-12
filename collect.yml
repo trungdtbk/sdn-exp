@@ -1,0 +1,15 @@
+---
+- name: collect rules from switches
+  hosts: hwswitches
+  gather_facts: no
+  tasks:
+      - name: gather facts
+        ios_facts:
+
+      - name: show rules
+        cli_command:
+            command: show openflow rules
+        register: result
+      - name: display result
+        debug:
+            var: result.stdout_lines

@@ -4,6 +4,7 @@ router bgp 65000
 {% for client in reflector['clients'] %}
   neighbor {{ client }} remote-as 65000
   neighbor {{ client }} route-reflector-client
+  neighbor {{ client }} advertisement-interval 1
 
 {% endfor %}
 

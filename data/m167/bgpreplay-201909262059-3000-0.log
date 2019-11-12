@@ -1,0 +1,194 @@
+2019-09-26 09:03:25,818 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:03:30,828 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:03:35,836 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:03:40,848 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:03:45,858 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:03:50,866 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:03:55,878 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:04:00,888 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:04:05,898 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:04:10,904 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:04:15,911 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:04:20,920 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:04:25,927 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:04:30,934 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:04:35,942 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:04:40,950 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:04:45,960 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:04:50,968 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:04:55,976 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:05:00,985 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:05:05,996 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:05:11,005 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:05:16,016 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:05:21,027 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:05:26,040 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:05:31,053 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:05:36,062 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:05:41,071 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:05:46,081 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:05:51,090 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:05:56,100 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:06:01,112 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:06:06,122 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:06:11,131 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:06:16,139 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:06:21,148 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:06:26,157 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:06:31,167 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:06:36,176 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:06:41,185 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:06:46,193 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:06:51,206 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:06:56,215 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:07:01,223 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:07:06,232 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:07:11,242 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:07:16,250 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:07:21,260 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:07:26,268 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:07:31,277 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:07:36,287 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:07:41,299 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:07:46,304 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:07:51,314 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:07:56,325 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:08:01,334 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:08:06,344 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:08:11,352 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:08:16,360 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:08:21,370 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:08:26,378 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:08:31,386 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:08:36,394 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:08:41,403 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:08:46,430 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:08:51,434 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:08:56,442 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:09:01,450 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:09:06,459 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:09:11,467 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:09:16,477 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:09:21,487 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:09:26,497 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:09:31,505 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:09:36,515 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:09:41,523 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:09:46,532 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:09:51,540 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:09:56,550 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:10:01,556 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:10:06,566 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:10:11,575 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:10:16,583 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:10:21,593 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:10:26,602 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:10:31,610 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:10:36,619 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:10:41,629 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:10:46,637 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:10:51,648 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:10:56,657 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:11:01,665 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:11:06,677 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:11:11,687 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:11:16,696 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:11:21,708 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:11:26,720 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:11:31,728 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:11:36,740 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:11:41,752 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:11:46,761 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:11:51,776 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:11:56,786 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:12:01,795 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:12:06,809 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:12:11,822 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:12:16,830 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:12:21,841 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:12:26,851 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:12:31,860 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:12:36,870 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:12:41,881 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:12:46,889 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:12:51,903 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:12:56,912 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:13:01,920 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:13:06,928 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:13:11,936 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:13:16,940 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:13:21,954 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:13:26,963 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:13:31,971 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:13:36,982 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:13:41,990 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:13:47,000 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:13:52,008 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:13:57,018 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:14:02,027 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:14:07,037 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:14:12,045 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:14:17,055 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:14:22,065 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:14:27,074 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:14:32,081 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:14:37,090 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:14:42,099 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:14:47,107 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:14:52,116 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:14:57,125 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:15:02,133 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:15:07,143 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:15:12,152 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:15:17,160 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:15:22,168 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:15:27,177 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:15:32,187 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:15:37,195 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:15:42,203 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:15:47,212 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:15:52,220 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:15:57,226 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:16:02,234 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:16:07,242 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:16:12,250 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:16:17,260 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:16:22,269 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:16:27,276 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:16:32,284 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:16:37,292 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:16:42,301 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:16:47,312 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:16:52,324 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:16:57,332 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:17:02,342 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:17:07,350 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:17:12,358 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:17:17,368 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:17:22,377 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:17:27,385 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:17:32,394 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:17:37,402 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:17:42,410 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:17:47,419 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:17:52,428 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:17:57,434 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:18:02,443 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:18:07,454 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:18:12,464 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:18:17,472 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:18:22,481 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:18:27,489 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:18:32,497 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:18:37,506 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:18:42,512 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:18:47,521 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:18:52,531 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:18:57,540 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:19:02,549 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:19:07,565 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:19:12,575 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:19:17,583 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:19:22,595 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}
+2019-09-26 09:19:27,607 bgpreplay INFO {'attr': {'local_pref': 250, 'nexthop': '10.0.30.1', 'as_path': [5, 1]}, 'nlri': ['1.0.0.0/24'], 'withdraw': []}
+2019-09-26 09:19:32,615 bgpreplay INFO {'attr': {'local_pref': None, 'nexthop': None, 'as_path': []}, 'nlri': [], 'withdraw': ['1.0.0.0/24']}

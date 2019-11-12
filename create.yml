@@ -103,6 +103,7 @@
           interfaces:
               - vlan: 40 # facing peers (first interface) in m167
                 peer_count: 2
+                peer_base_asn: 200
                 switch_ports: [11]
                 faucet_mac: "0e:00:00:00:00:40"
                 phys_intf: enp1s0f0 # connect to ATX-510 port1.0.11
@@ -143,7 +144,7 @@
                 phys_intf: enp2s0f1 # connect to ATX-930-1 port1.0.12
               - vlan: 30 # interface 2
                 phys_intf: enp2s0f0 # connect to ATX-930-2 port1.0.12
-          networks: [ 1.0.0.0/24 ]
+          networks: [ 1.2.2.0/24 ]
           peer_specific:
               5:
                   asn: 65000
